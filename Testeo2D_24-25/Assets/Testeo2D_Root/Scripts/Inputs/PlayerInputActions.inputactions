@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInputMap",
+    "name": "PlayerInputActions",
     "maps": [
         {
             "name": "GamePlay",
@@ -116,7 +116,7 @@
                 {
                     "name": "up",
                     "id": "8a0e80fd-95f6-4a3f-a882-789e8b40b550",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "BasicScheme",
@@ -160,7 +160,7 @@
                 {
                     "name": "",
                     "id": "5c54ba05-b330-4ab9-97ca-1eb7747f2150",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "BasicScheme",

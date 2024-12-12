@@ -9265,6 +9265,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 936f7ca154da9d6478faadd395098b15, type: 2}
+    - target: {fileID: 4059860154851626218, guid: 2815e54f1c12c024a93db71a5c58b39a, type: 3}
+      propertyPath: isGrounded
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6787742905169285343, guid: 2815e54f1c12c024a93db71a5c58b39a, type: 3}
       propertyPath: m_GravityScale
       value: 1

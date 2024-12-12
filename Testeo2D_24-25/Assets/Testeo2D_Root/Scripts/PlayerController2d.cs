@@ -11,10 +11,13 @@ public class PlayerController2d : MonoBehaviour
     //Referencias generales 
     [SerializeField] Rigidbody2D playerRb; //Ref al rigidbody del player
     [SerializeField] PlayerInput playerInput; //Ref al gestor del input del jugador 
+    [SerializeField] Animator playerAnim;//Ref al animator para gestionar las transiciones de animación
 
     [Header("Movement Parameters")]
     private Vector2 moveInput; //Almacén de Input del Player
     public float speed;
+    [SerializeField] bool isFacingRight; 
+
 
     [Header("Jump Parameters")]
     public float jumpForce;
@@ -28,6 +31,9 @@ public class PlayerController2d : MonoBehaviour
         //Autoreferecniar componentes: Nombre de variable = GetComponent()
         playerRb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+        playerAnim = GetComponent<Animator>();
+        isFacingRight = true; 
+
 
        
     }
@@ -35,7 +41,24 @@ public class PlayerController2d : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        HandleAnimations();
+
+        //Flip 
+        if(moveInput.x>0 )
+        {
+            if(!isFacingRight)
+            {
+                Flip();
+            }
+        }
+        if (moveInput.x<0)
+        {
+            if(isFacingRight)
+            {
+                Flip();
+            }
+        }
+
     }
     private void FixedUpdate()
     {
@@ -46,6 +69,22 @@ public class PlayerController2d : MonoBehaviour
         playerRb.velocity = new Vector3(moveInput.x * speed, playerRb.velocity.y, 0);
     }
    
+    void Flip()
+    {
+        Vector3 currentScale = transform.localScale;
+        currentScale.x *= -1;
+        transform.localScale = currentScale;
+        isFacingRight = !isFacingRight; // nombre de bool= !nombre de bool(cambio al estado contrario)
+    }
+
+    void HandleAnimations()
+    {
+        //Conector de valores generales con parámetros de cambios de animación
+        playerAnim.SetBool("IsJumping", !isGrounded);
+        if (moveInput.x > 0 || moveInput.x < 0) playerAnim.SetBool("IsRunning", true);
+        else playerAnim.SetBool("IsJumping", false);
+
+    }
 
     #region Input Events 
     //Para crear un evento:
